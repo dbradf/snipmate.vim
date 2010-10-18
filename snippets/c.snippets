@@ -72,27 +72,28 @@ snippet forr
 	for (${1:i} = ${2:0}; ${3:$1 < 10}; $1${4:++}) {
 		${5:/* code */}
 	}
+# Void Function
+snippet vfun
+	${1:void}
+	${2:function_name}(${3})
+	{
+		${3: /* code */}
+	} /* end $2() */
 # Function
 snippet fun
-	${1:void} 
+	${1:int} 
 	${2:function_name}(${3})
 	{
 		int rc     = RC_SUCCESS;
 		int code   = 0;
-		int trclvl = 4;
 
 		${6:/* code */}
 
 	xerror:
 
-		if (rc)
-		{
-			trclvl = 1;
-		}
-
-		TRACE2(${4:TRACE_DISK}, trclvl, TRCID_${5:TRCID}_ERREXIT,
-			   "$2: exit rc=%d code=%d\n",
-			   rc, code);
+		CONDTRACE2(${4:TRACE_DISK}, 4, TRCID_${5:TRCID}_EXIT, rc,
+			       "$2: exit rc=%d code=%d\n",
+			       rc, code);
 
 		return rc;
 	} /* end $2() */
