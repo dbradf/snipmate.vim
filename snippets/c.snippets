@@ -140,18 +140,25 @@ snippet com
 	/*
 	 * NAME: ${1:function_name}
 	 *
-	 * DESCRIPTION: ${2:Description}
+	 * DESCRIPTION: ${4:Description}
 	 * 
 	 * PARAMETERS:
-	 *     ${3:Param 1} - ${4:Description}
+	 *     ${2:Param 1} - ${3:Description}
 	 *
 	 * RETURNS:
 	 *     RC_SUCCESS on success.
 	 */
 snippet trace
-	TRACE1(${1:TRACE_DISK}, ${2:LEVEL}, TRCID_${3:TRCID},
+	TRACE1(TRACE_${1:DISK}, ${2:LEVEL}, TRCID_${3:TRCID},
 	       "${4:function}: ${5:description}\n",
 	       ${6:args});
+snippet trn
+	TRACE${7:1}(TRACE_${1:DISK}, ${2:LEVEL}, TRCID_${3:TRCID},
+	       "${4:function}: ${5:description}\n",
+	       ${6:args});
+snippet tr0
+	TRACE0(TRACE_${1:DISK}, ${2:LEVEL}, TRCID_${3:TRCID},
+	       "${4:function}: ${5:description}\n");
 snippet ifnomem
 	if (${1:var} == NULL)
 	{
